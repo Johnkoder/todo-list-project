@@ -45,7 +45,7 @@ export default class Project {
         return;
     }
 
-    // util
+    // utils
     askUserTodoInfo() {
         const id = this.todos.length;
         let title, desc, dueDate, priority;

@@ -7,7 +7,7 @@ export default class Controller {
         controller.runProjectMenu();
     }
 
-     runProjectMenu() {
+    runProjectMenu() {
         const projectContainer = new ProjectContainer();
         while(true) {
             projectContainer.displayProjects();
