@@ -1,6 +1,7 @@
+import askUserInt from '../utils/askUserInt.js';
+import askUserString from '../utils/askUserString.js';
 import Todo from './todo.js';
-import promptSync from "prompt-sync";
-const prompt = promptSync();
+import { compareAsc, format } from "date-fns";
 
 export default class Project {
     todos = [];
@@ -10,8 +11,63 @@ export default class Project {
         this.name = name;
     }
 
+    // displays
+    displayTodos() {
+        for(const todo of this.todos) {
+            console.log(`${todo.id} - ${todo.title}`);
+        }
+    }
+
+    displayTodosMenu() {
+        console.log(`Project: ${this.name}`);
+        console.log("[1] Create todo")
+        console.log("[2] Update todo")
+        console.log("[3] Delete todo")
+        console.log("[4] Exit");
+    }
+
+    // features
     createTodo() {
-        // Append todo in todos array
+        // TODO: create then append todo in todos 
+        const todoInfo = this.askUserTodoInfo();
+        const newTodo = new Todo(todoInfo);
+        this.todos.push(newTodo);
+    }
+
+    updateTodo() {
+        // TODO: ask user what todo to update then,
+        // TODO: ask what info to update
         return;
+    }
+
+    deleteTodo() {
+        // TODO: search todo by id then delete in todos array
+        return;
+    }
+
+    // util
+    askUserTodoInfo() {
+        const id = this.todos.length;
+        let title, desc, dueDate, priority;
+        console.log("Name: ");
+        title = askUserString();
+        console.log("description: ");
+        desc = askUserString();
+        console.log("Due Date: ");
+        dueDate = this.askUserDueDate();
+        console.log("Priority(y/n): ");
+        priority = askUserString() === "y";
+        return { id, title, desc, dueDate, priority }
+    }
+
+    askUserDueDate() {
+        let year, day, month;
+        console.log("Year: ")
+        year = askUserInt();
+        console.log("Month: ")
+        month = askUserInt();
+        console.log("Day: ");
+        day = askUserInt();
+        return format(new Date(year, month - 1, day), "yyyy-MM-dd");
     }
 }

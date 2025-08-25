@@ -1,7 +1,5 @@
+import askUserString from '../utils/askUserString.js';
 import Project from './project.js';
-import promptSync from "prompt-sync";
-const prompt = promptSync();
-
 
 export default class projectContainer {
     projects = [];
@@ -23,7 +21,7 @@ export default class projectContainer {
     // features
     createProject() {
         console.log("Enter the project name: ");
-        const name = prompt("=> ").trim();
+        const name = askUserString();
         const id = this.projects.length;
         const newProject = new Project(id, name);
         this.projects.push(newProject);
@@ -40,7 +38,7 @@ export default class projectContainer {
     pickProject(id) {
         for(let i = 0; i < this.projects.length; i++) {
             if(this.projects[i].id === id) {
-                
+                return this.projects[i];
             }
         }
     }
