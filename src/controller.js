@@ -1,13 +1,14 @@
 import ProjectContainer from "./todoList/projectContainer.js";
 import askUserInt from "./utils/askUserInt.js";
+import askUserString from "./utils/askUserString.js";
 
 export default class Controller {
     static init() {
         const controller = new Controller();
-        controller.runProjectMenu();
+        controller.#runProjectMenu();
     }
 
-    runProjectMenu() {
+    #runProjectMenu() {
         const projectContainer = new ProjectContainer();
         while(true) {
             projectContainer.displayProjects();
@@ -21,7 +22,7 @@ export default class Controller {
                 console.log("Pick one project")
                 const id = askUserInt();
                 const chosenProject = projectContainer.pickProject(id);
-                this.runTodosMenu(chosenProject);
+                this.#runTodosMenu(chosenProject);
             } else if(choice === 3) {
                 console.log("Pick one to delete: ");
                 const id = askUserInt();
@@ -32,7 +33,7 @@ export default class Controller {
         }
     }
 
-    runTodosMenu(chosenProject) {
+    #runTodosMenu(chosenProject) {
         while(true) {
             chosenProject.displayTodos();
             chosenProject.displayTodosMenu();
@@ -42,9 +43,18 @@ export default class Controller {
             if(choice === 1) {
                 chosenProject.createTodo();
             } else if(choice === 2) {
-                return;
+                console.log("Pick one Todo to update: ")
+                const id = askUserInt();
+                const chosenTodo = chosenProject.pickTodo(id);
+                // prompt user what info to update
+                chosenTodo.displayUpdateTodoMenu();
+                const updateAnswers = {
+                    fieldNum: askUserInt(),
+                    answer: askUserString()
+                }
+                chosenTodo.updateField(updateAnswers);
             } else if(choice === 3) {
-                return;
+                chosenProject.deleteTodo();
             } else {
                 return;
             }

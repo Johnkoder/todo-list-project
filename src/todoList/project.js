@@ -14,7 +14,7 @@ export default class Project {
     // displays
     displayTodos() {
         for(const todo of this.todos) {
-            console.log(`${todo.id} - ${todo.title}`);
+            console.log(`${todo.id} - ${todo.title} - ${todo.desc} - ${todo.dueDate} - ${todo.priority} - ${todo.isChecked}`);
         }
     }
 
@@ -34,15 +34,12 @@ export default class Project {
         this.todos.push(newTodo);
     }
 
-    updateTodo() {
-        // TODO: ask user what todo to update then,
-        // TODO: ask what info to update
-        return;
-    }
-
     deleteTodo() {
-        // TODO: search todo by id then delete in todos array
-        return;
+        for(let i = 0; i < this.todos.length; i++) {
+            if(this.todos[i].id === id) {
+                this.todos.splice(i, 1);
+            }
+        }
     }
 
     // utils
@@ -69,5 +66,13 @@ export default class Project {
         console.log("Day: ");
         day = askUserInt();
         return format(new Date(year, month - 1, day), "yyyy-MM-dd");
+    }
+
+    pickTodo(id) {
+        for(let i = 0; i < this.todos.length; i++) {
+            if(this.todos[i].id === id) {
+                return this.todos[i];
+            }
+        }
     }
 }
