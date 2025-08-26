@@ -46,7 +46,6 @@ export default class Controller {
                 console.log("Pick one Todo to update: ")
                 const id = askUserInt();
                 const chosenTodo = chosenProject.pickTodo(id);
-                // prompt user what info to update
                 chosenTodo.displayUpdateTodoMenu();
                 const updateAnswers = {
                     fieldNum: askUserInt(),

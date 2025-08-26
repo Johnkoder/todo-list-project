@@ -2,11 +2,11 @@ import askUserString from '../utils/askUserString.js';
 import Project from './project.js';
 
 export default class projectContainer {
-    projects = [];
+    #projects = [];
 
-    // displays
+    // displays - development
     displayProjects() {
-        for(const project of this.projects) {
+        for(const project of this.#projects) {
             console.log(`${project.id} - ${project.name}`);
         }
     }
@@ -19,26 +19,30 @@ export default class projectContainer {
     }
 
     // features
+    get projects() {
+        return this.#projects;
+    }
+
     createProject() {
         console.log("Enter the project name: ");
         const name = askUserString();
-        const id = this.projects.length;
+        const id = this.#projects.length;
         const newProject = new Project(id, name);
-        this.projects.push(newProject);
+        this.#projects.push(newProject);
     }
 
     deleteProject(id) {
-        for(let i = 0; i < this.projects.length; i++) {
-            if(this.projects[i].id === id) {
-                this.projects.splice(i, 1);
+        for(let i = 0; i < this.#projects.length; i++) {
+            if(this.#projects[i].id === id) {
+                this.#projects.splice(i, 1);
             }
         }
     }
 
     pickProject(id) {
-        for(let i = 0; i < this.projects.length; i++) {
-            if(this.projects[i].id === id) {
-                return this.projects[i];
+        for(let i = 0; i < this.#projects.length; i++) {
+            if(this.#projects[i].id === id) {
+                return this.#projects[i];
             }
         }
     }
