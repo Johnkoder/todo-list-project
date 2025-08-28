@@ -4,7 +4,11 @@ import todoUI from "./UI/todoUI.js";
 import './template.html';
 
 export default class UiController {
+    constructor() {
+        this.root = document.getElementById('content');
+    }
+
     init() {
-        return;
+        return this.root;
     }
 }

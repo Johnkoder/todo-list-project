@@ -2,17 +2,21 @@ import Todo from './todo.js';
 
 export default class Project {
     #todoList = [];
+    #id;
+    #name;
 
     constructor(id, name) {
-        this.id = id;
-        this.name = name;
+        this.#id = id;
+        this.#name = name;
     }
 
-    // features
+    get id() { return this.#id };
+    get name() { return this.#name };
     get todoList() {
         return this.#todoList;
     }
 
+    // features
     createTodo(todoInfo) {
         const newTodo = new Todo(todoInfo);
         this.#todoList.push(newTodo);

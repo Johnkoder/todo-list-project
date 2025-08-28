@@ -1,10 +1,10 @@
 import Project from './project.js';
 
-export default class projectContainer {
+export default class ProjectContainer {
     #projectList = [];
 
     // features
-    get projects() { return this.#projectList; }
+    get projectList() { return this.#projectList; }
 
     createProject(projectName) {
         const id = this.#projectList.length;
