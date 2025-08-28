@@ -1,9 +1,6 @@
-//import Controller from './controller.js';
-//Controller.init();
-
 import UiController from "./uiController.js";
 
-UiController.init();
+const ui = new UiController();
+window.ui = ui; 
 
 
-//TODO: Clean up all the code.

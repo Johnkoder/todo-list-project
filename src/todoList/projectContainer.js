@@ -1,48 +1,29 @@
-//import askUserString from '../utils/askUserString.js';
 import Project from './project.js';
 
 export default class projectContainer {
-    #projects = [];
-
-    // displays - development
-    displayProjects() {
-        for(const project of this.#projects) {
-            console.log(`${project.id} - ${project.name}`);
-        }
-    }
-
-    displayMenu() {
-        console.log("[1] Create project");
-        console.log("[2] Pick a project");
-        console.log("[3] Delete project");
-        console.log("[4] Exit")
-    }
+    #projectList = [];
 
     // features
-    get projects() {
-        return this.#projects;
+    get projects() { return this.#projectList; }
+
+    createProject(projectName) {
+        const id = this.#projectList.length;
+        const newProject = new Project(id, projectName);
+        this.#projectList.push(newProject);
     }
 
-    // createProject() {
-    //     console.log("Enter the project name: ");
-    //     const name = askUserString();
-    //     const id = this.#projects.length;
-    //     const newProject = new Project(id, name);
-    //     this.#projects.push(newProject);
-    // }
-
     deleteProject(id) {
-        for(let i = 0; i < this.#projects.length; i++) {
-            if(this.#projects[i].id === id) {
-                this.#projects.splice(i, 1);
+        for(let i = 0; i < this.#projectList.length; i++) {
+            if(this.#projectList[i].id === id) {
+                this.#projectList.splice(i, 1);
             }
         }
     }
 
-    pickProject(id) {
-        for(let i = 0; i < this.#projects.length; i++) {
-            if(this.#projects[i].id === id) {
-                return this.#projects[i];
+    findProject(id) {
+        for(let i = 0; i < this.#projectList.length; i++) {
+            if(this.#projectList[i].id === id) {
+                return this.#projectList[i];
             }
         }
     }
