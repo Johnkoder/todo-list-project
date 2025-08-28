@@ -1,4 +1,4 @@
-import askUserString from '../utils/askUserString.js';
+//import askUserString from '../utils/askUserString.js';
 import Project from './project.js';
 
 export default class projectContainer {
@@ -23,13 +23,13 @@ export default class projectContainer {
         return this.#projects;
     }
 
-    createProject() {
-        console.log("Enter the project name: ");
-        const name = askUserString();
-        const id = this.#projects.length;
-        const newProject = new Project(id, name);
-        this.#projects.push(newProject);
-    }
+    // createProject() {
+    //     console.log("Enter the project name: ");
+    //     const name = askUserString();
+    //     const id = this.#projects.length;
+    //     const newProject = new Project(id, name);
+    //     this.#projects.push(newProject);
+    // }
 
     deleteProject(id) {
         for(let i = 0; i < this.#projects.length; i++) {

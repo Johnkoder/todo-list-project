@@ -4,3 +4,6 @@
 import UiController from "./uiController.js";
 
 UiController.init();
+
+
+//TODO: Clean up all the code.

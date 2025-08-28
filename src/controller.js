@@ -1,11 +1,11 @@
 import ProjectContainer from "./todoList/projectContainer.js";
-import askUserInt from "./utils/askUserInt.js";
-import askUserString from "./utils/askUserString.js";
+// import askUserInt from "./utils/askUserInt.js";
+// import askUserString from "./utils/askUserString.js";
 
 export default class Controller {
     static init() {
         const controller = new Controller();
-        controller.#runProjectMenu();
+        //controller.#runProjectMenu();
     }
 
     #runProjectMenu() {

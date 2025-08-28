@@ -1,5 +1,5 @@
-import askUserInt from '../utils/askUserInt.js';
-import askUserString from '../utils/askUserString.js';
+//import askUserInt from '../utils/askUserInt.js';
+//import askUserString from '../utils/askUserString.js';
 import Todo from './todo.js';
 import { compareAsc, format } from "date-fns";
 
@@ -46,30 +46,30 @@ export default class Project {
     }
 
     // utils
-    askUserTodoInfo() {
-        const id = this.#todos.length;
-        let title, desc, dueDate, priority;
-        console.log("Name: ");
-        title = askUserString();
-        console.log("description: ");
-        desc = askUserString();
-        console.log("Due Date: ");
-        dueDate = this.askUserDueDate();
-        console.log("Priority(y/n): ");
-        priority = askUserString() === "y";
-        return { id, title, desc, dueDate, priority }
-    }
+    // askUserTodoInfo() {
+    //     const id = this.#todos.length;
+    //     let title, desc, dueDate, priority;
+    //     console.log("Name: ");
+    //     title = askUserString();
+    //     console.log("description: ");
+    //     desc = askUserString();
+    //     console.log("Due Date: ");
+    //     dueDate = this.askUserDueDate();
+    //     console.log("Priority(y/n): ");
+    //     priority = askUserString() === "y";
+    //     return { id, title, desc, dueDate, priority }
+    // }
 
-    askUserDueDate() {
-        let year, day, month;
-        console.log("Year: ")
-        year = askUserInt();
-        console.log("Month: ")
-        month = askUserInt();
-        console.log("Day: ");
-        day = askUserInt();
-        return format(new Date(year, month - 1, day), "yyyy-MM-dd");
-    }
+    // askUserDueDate() {
+    //     let year, day, month;
+    //     console.log("Year: ")
+    //     year = askUserInt();
+    //     console.log("Month: ")
+    //     month = askUserInt();
+    //     console.log("Day: ");
+    //     day = askUserInt();
+    //     return format(new Date(year, month - 1, day), "yyyy-MM-dd");
+    // }
 
     pickTodo(id) {
         for(let i = 0; i < this.#todos.length; i++) {
