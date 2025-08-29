@@ -15,10 +15,6 @@ export default class Project {
 
     set setName(name) { this.#name = name };
 
-    //TODO: FEATURES
-    // create Todo and add to array.
-    // delete Todo and splice from array.
-
     createTodo(title, desc, dueDate, priority) {
         const newTodo = new Todo(title, desc, dueDate, priority);
         this.#todoList.push(newTodo);
