@@ -1,9 +1,11 @@
 
 
 export default class View {
-    constructor(root) {
-        this.root = root;
+    constructor() {
+        this.root = document.createElement('div');
     }
 
-
+    render() {        
+        return this.root;
+    }
 }

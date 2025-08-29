@@ -8,7 +8,6 @@ export default class Controller {
 
     init() {
         const view = new View();
-        //view.render();
-        console.log(this.root);
+        this.root.appendChild(view.render());
     }
 }
