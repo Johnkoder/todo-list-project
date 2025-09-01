@@ -11,7 +11,9 @@ export default class View {
 
     render() {       
         const projectContUI = new ProjectContUI();
-        this.root.append(projectContUI.render()); 
+        this.root.append(
+            projectContUI.build()
+        ); 
         return this.root;
     }
 }

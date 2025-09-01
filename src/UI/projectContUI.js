@@ -6,34 +6,45 @@ export default class ProjectContUI {
         this.root = document.createElement('div');
         this.root.className = 'project-cont';
 
-        this.projectListElement = document.createElement('div');
+        this.root.innerHTML = `
+            <div class="project-list"></div>
+            <button class="add-project-btn">Add Project</button>
+            <dialog class="add-project-dialog">
+                <form method="dialog" class="add-project-form">
+                <label>
+                    Project Name:
+                    <input type="text" name="projectName" required />
+                </label>
+                <menu>
+                    <button value="cancel">Cancel</button>
+                    <button id="confirmBtn" value="default">Add</button>
+                </menu>
+                </form>
+            </dialog>
+        `;
 
-        this.addProjectBtn = document.createElement('button');
-        this.createAddProjectBtn();
-
-        this.dialogElement = document.createElement('dialog');
-        this.createAddProjectModal();
+        this.projectListElement = this.root.querySelector('.project-list');
+        this.addProjectBtn = this.root.querySelector('.add-project-btn');
+        this.dialogElement = this.root.querySelector('.add-project-dialog');
+        this.formElement = this.root.querySelector('.add-project-form');
+    
+        this.bindEvents();
     }
     //FEATURES:
     // create project
     // delete project
     // update project name
 
-    render() {
-
-
-        this.handleListeners();
-        this.root.append(
-            this.addProjectBtn
-        );
+    build() {
         return this.root;
     }
 
-    //listeners
-    handleListeners() {
+    // bind events 
+    bindEvents() {
         this.handleAddProjectBtn();
     }
 
+    // listeners
     handleAddProjectBtn() {
         this.addProjectBtn.addEventListener('click', ()=> {
             this.showAddProjectModal();
@@ -43,24 +54,5 @@ export default class ProjectContUI {
     showAddProjectModal() {
         this.dialogElement.showModal();
     }
-
-    // element creation
-    createAddProjectBtn() {
-        this.addProjectBtn.className = 'add-project-btn';
-        this.addProjectBtn.textContent = '+';
-    }
-
-    createAddProjectModal() {
-        const inputElement = document.createElement('input');
-        const titleElement = document.createElement('h2');
-        titleElement.textContent = 'Add Project';
-        const submitBtn = document.createElement('button');
-        submitBtn.textContent = 'Submit';
-
-        this.dialogElement.append(titleElement, inputElement, submitBtn);
-    }
-
-
 }
 
-//TODO: change codebase to template approach
