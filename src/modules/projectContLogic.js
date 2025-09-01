@@ -3,6 +3,8 @@ import Project from "./projecLogic";
 export default class ProjectCont {
     #projectList = [];
 
+    get getProjectList() { return this.#projectList }
+
     createProject(name) {
         const newProject = new Project(name);
         this.#projectList.push(newProject);
