@@ -6,9 +6,12 @@ export default class View {
     constructor() {
         // element that we will append in the 'content' element.
         this.root = document.createElement('div');
+        this.root.className = 'view'
     }
 
-    render() {        
+    render() {       
+        const projectContUI = new ProjectContUI();
+        this.root.append(projectContUI.render()); 
         return this.root;
     }
 }
