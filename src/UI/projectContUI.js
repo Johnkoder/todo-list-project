@@ -32,13 +32,9 @@ export default class ProjectContUI {
     
         this.bindEvents();
     }
-    //FEATURES:
-    // create project
-    // delete project
-    // update project name
-
+    
+    //TODO: Update and delete functionality
     build() {
-        this.logic.createProject("hi");
         this.renderProjectList();
         return this.root;
     }
@@ -104,10 +100,38 @@ export default class ProjectContUI {
         const projectElement = document.createElement('div');
         projectElement.innerHTML = `
             <span>${project.getName}</span>
-            <button>Update</button>
-            <button>Delete</button>
+            <button class="project-update-btn">Update</button>
+            <button class="project-delete-btn">Delete</button>
         `;
+
+        this.handleProjectUpdateBtn(projectElement, project);
+        this.handleProjectDeleteBtn(projectElement, project);
         return projectElement;
+    }
+
+    handleProjectUpdateBtn(projectElement, project) {
+        this.projectUpdateBtn = projectElement.querySelector('.project-update-btn');
+        this.projectUpdateBtn?.addEventListener('click', () => {
+            this.updateProjectBtnProcess(project);
+            this.renderProjectList();
+        })
+    }
+
+    updateProjectBtnProcess(project) {
+        // Implement this.
+        console.log(project.getName)
+    }
+
+    handleProjectDeleteBtn(projectElement, project) {
+        this.projectDeleteBtn = projectElement.querySelector('.project-delete-btn');
+        this.projectDeleteBtn?.addEventListener('click', () => {
+            this.deleteProjectBtnProcess(project);
+            this.renderProjectList();
+        })
+    }
+
+    deleteProjectBtnProcess(project) {
+        this.logic.deleteProject(project.getId)
     }
 
     removeChildren() {
