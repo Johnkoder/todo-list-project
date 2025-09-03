@@ -98,10 +98,23 @@ export default class ProjectContUI {
 
     createProjectElement(project) {
         const projectElement = document.createElement('div');
+        projectElement.id = project.getId;
         projectElement.innerHTML = `
             <span>${project.getName}</span>
             <button class="project-update-btn">Update</button>
             <button class="project-delete-btn">Delete</button>
+
+            <dialog class="update-project-dialog">
+                
+                
+                <div>Project Name:</div>    
+                <input class="update-dialog-input" type="text" required />
+            
+                <button class="update-cancel-btn">Cancel</button>
+                <button class="update-confirm-btn">Confirm</button>
+                
+                
+            </dialog>
         `;
 
         this.handleProjectUpdateBtn(projectElement, project);
@@ -110,21 +123,54 @@ export default class ProjectContUI {
     }
 
     handleProjectUpdateBtn(projectElement, project) {
-        this.projectUpdateBtn = projectElement.querySelector('.project-update-btn');
-        this.projectUpdateBtn?.addEventListener('click', () => {
-            this.updateProjectBtnProcess(project);
-            this.renderProjectList();
+        const projectUpdateBtn = projectElement.querySelector('.project-update-btn');
+        projectUpdateBtn?.addEventListener('click', () => {
+            this.showUpdateProjectModal(projectElement);
+            
+            this.handleUpdateConfirmBtn(projectElement);
+            this.handleUpdateCancelBtn(projectElement);
         })
     }
 
-    updateProjectBtnProcess(project) {
-        // Implement this.
-        console.log(project.getName)
+    handleUpdateConfirmBtn(projectElement) {
+        const projectUpdateConfirmBtn = projectElement.querySelector('.update-confirm-btn');
+        projectUpdateConfirmBtn.addEventListener('click', ()=> {
+            this.updateConfirmBtnProcess(projectElement);
+        })
+    }
+
+    updateConfirmBtnProcess(projectElement) {
+        const  updateProjectModal = projectElement.querySelector('.update-project-dialog');
+        const updateDialogInput = projectElement.querySelector('.update-dialog-input');
+        const projectIndex = this.logic.findProjectIndex(projectElement.id);
+        const chosenProject = this.logic.getProjectList[projectIndex];
+        chosenProject.setName = updateDialogInput.value;
+        updateProjectModal.close();
+        this.renderProjectList();
+    }
+
+    handleUpdateCancelBtn(projectElement) {
+        const projectUpdateCancelBtn = projectElement.querySelector('.update-cancel-btn')
+        projectUpdateCancelBtn.addEventListener('click', ()=> {
+            this.closeUpdateProjectModal(projectElement);
+        })
+    }
+
+    showUpdateProjectModal(projectElement) {
+        const updateProjectModal = projectElement.querySelector('.update-project-dialog');
+        updateProjectModal.showModal();
+    }
+
+    closeUpdateProjectModal(projectElement) {
+        const updateProjectModal = projectElement.querySelector('.update-project-dialog');
+        const updateDialogInput = projectElement.querySelector('.update-dialog-input')
+        updateDialogInput.value = '';
+        updateProjectModal.close();
     }
 
     handleProjectDeleteBtn(projectElement, project) {
-        this.projectDeleteBtn = projectElement.querySelector('.project-delete-btn');
-        this.projectDeleteBtn?.addEventListener('click', () => {
+        const projectDeleteBtn = projectElement.querySelector('.project-delete-btn');
+        projectDeleteBtn?.addEventListener('click', () => {
             this.deleteProjectBtnProcess(project);
             this.renderProjectList();
         })
