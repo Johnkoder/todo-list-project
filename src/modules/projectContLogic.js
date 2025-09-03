@@ -1,4 +1,4 @@
-import Project from "./projecLogic";
+import Project from "./projectLogic";
 
 export default class ProjectCont {
     #projectList = [];
