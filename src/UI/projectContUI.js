@@ -21,6 +21,8 @@ export default class ProjectContUI {
                 
                 
             </dialog>
+
+            <div class="todos-cont"></div>
         `;
 
         this.projectListElement = this.root.querySelector('.project-list');
@@ -29,7 +31,9 @@ export default class ProjectContUI {
         this.dialogElement = this.root.querySelector('.add-project-dialog');
         this.dialogInput = this.dialogElement.querySelector('.dialog-input')
         this.confirmBtn = this.dialogElement.querySelector('.confirm-btn')
-        this.cancelBtn = this.dialogElement.querySelector('.cancel-btn')
+        this.cancelBtn = this.dialogElement.querySelector('.cancel-btn');
+
+        this.todosCont = this.root.querySelector('.todos-cont');
     
         this.bindEvents();
     }
@@ -99,7 +103,7 @@ export default class ProjectContUI {
         const projectElement = document.createElement('div');
         projectElement.id = project.getId;
         projectElement.innerHTML = `
-            <span>${project.getName}</span>
+            <span class="project-name">${project.getName}</span>
             <button class="project-update-btn">Update</button>
             <button class="project-delete-btn">Delete</button>
 
@@ -112,7 +116,6 @@ export default class ProjectContUI {
                 <button class="update-cancel-btn">Cancel</button>
                 <button class="update-confirm-btn">Confirm</button>
                 
-                
             </dialog>
         `;
 
@@ -123,15 +126,16 @@ export default class ProjectContUI {
     }
 
     handleProjectElement(projectElement, project) {
-        projectElement?.addEventListener('click', ()=> {
+        const projectName = projectElement.querySelector('.project-name')
+        projectName?.addEventListener('click', ()=> {
             this.projectElementProcess(project);
         })
     }
 
     projectElementProcess(project) {
-        this.root.removeChild(this.root.lastChild)
+        this.todosCont.replaceChildren();
         const projectUI = new ProjectUI(project);
-        this.root.append(projectUI.build());
+        this.todosCont.append(projectUI.build());
     }
 
     handleProjectUpdateBtn(projectElement, project) {
@@ -184,6 +188,7 @@ export default class ProjectContUI {
         const projectDeleteBtn = projectElement.querySelector('.project-delete-btn');
         projectDeleteBtn?.addEventListener('click', () => {
             this.deleteProjectBtnProcess(project);
+            this.todosCont.replaceChildren();
             this.renderProjectList();
         })
     }

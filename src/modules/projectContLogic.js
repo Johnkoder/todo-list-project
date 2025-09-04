@@ -16,9 +16,7 @@ export default class ProjectCont {
     }
 
     findProjectIndex(id) {
-        console.log(id)
         for(let i = 0; i < this.#projectList.length; i++) {
-            console.log(this.#projectList[i])
             if(this.#projectList[i].getId === id) {
                 return i;
             }

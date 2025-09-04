@@ -46,6 +46,7 @@ export default class ProjectUI {
     }
 
     build() {
+        //this.projectLogic.createTodo('test1', '', '', ''); //testing
         this.renderTodoList();
         return this.root;
     }
@@ -107,10 +108,34 @@ export default class ProjectUI {
 
             <button class="todo-delete-btn">Delete</button>
             <button class="todo-update-btn">Update</button>
-        `;
 
-        //TODO: make an update-todo-dialog here
+ 
+        `;
+            //TODO: make an update-todo-dialog here ^^^^^
+        this.handleTodoDeleteBtn(todoElement, todo);
+        this.handleTodoUpdateBtn();
+
         return todoElement;
+    }
+
+    handleTodoUpdateBtn() {
+
+    }
+
+    todoUpdateBtnProcess() {
+
+    }
+
+    handleTodoDeleteBtn(todoElement, todo) {
+        const todoDeleteBtn = todoElement.querySelector('.todo-delete-btn');
+        todoDeleteBtn?.addEventListener('click', ()=> {
+            this.todoDeleteBtnProcess(todo);
+            this.renderTodoList();
+        })
+    }
+
+    todoDeleteBtnProcess(todo) {
+        this.projectLogic.deleteTodo(todo.getId);
     }
 
     renderTodoList() {
