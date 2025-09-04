@@ -1,10 +1,11 @@
 import Project from "../modules/projectLogic.js";
 
 export default class ProjectUI {
-    constructor() {
-        this.projectLogic = new Project();
+    constructor(project) {
+        this.projectLogic = project;
         this.root = document.createElement('div');
         this.root.className = 'project';
+        this.root.id = project.getId;
 
         this.root.innerHTML = `
             <div class="todo-list"></div>
@@ -45,6 +46,7 @@ export default class ProjectUI {
     }
 
     build() {
+        this.renderTodoList();
         return this.root;
     }
 
@@ -62,14 +64,19 @@ export default class ProjectUI {
 
     handleAddTodoDialogSubmitBtn() {
         this.addTodoDialogSubmitBtn.addEventListener('click', ()=> {
-            this.addTodoDialogSubmitBtnProcess()
+            this.addTodoDialogSubmitBtnProcess();
         })
     }
 
     addTodoDialogSubmitBtnProcess() {
-        //TODO: DO THIS
-        console.log('test')
-        return;
+        const title = this.todoNameInput.value;
+        const desc = this.todoDescInput.value;
+        const dueDate = this.todoDueDateInput.value;
+        const priority = this.todoPriorityInput.value;
+
+        this.projectLogic.createTodo(title, desc, dueDate, priority);
+        this.closeAddTodoModal();
+        this.renderTodoList();
     }
 
 
@@ -86,6 +93,38 @@ export default class ProjectUI {
     closeAddTodoModal() {
         this.clearAddTodoInputs();
         this.addTodoDialog.close();
+    }
+
+    createTodoElement(todo) {
+        const todoElement = document.createElement('div');
+        todoElement.id = todo.getId;
+        todoElement.innerHTML = `
+            <input type="checkbox" ${todo.getIsChecked? 'checked':''} />
+            <span>${todo.getTitle}</span>
+            <span>${todo.getDesc}</span>
+            <span>${todo.getDueDate}</span>
+            <span>${todo.getPriority}</span>
+
+            <button class="todo-delete-btn">Delete</button>
+            <button class="todo-update-btn">Update</button>
+        `;
+
+        //TODO: make an update-todo-dialog here
+        return todoElement;
+    }
+
+    renderTodoList() {
+        this.removeChildren();
+        const todoList = this.projectLogic.getTodoList;
+        todoList.forEach(todo => {
+            this.todoListElement.append(this.createTodoElement(todo));
+        })
+    }
+
+    removeChildren() {
+        while (this.todoListElement.firstChild) {
+            this.todoListElement.removeChild(this.todoListElement.lastChild);
+        }
     }
 
     clearAddTodoInputs() {

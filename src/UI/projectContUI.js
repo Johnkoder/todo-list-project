@@ -1,4 +1,5 @@
 import ProjectCont from "../modules/projectContLogic";
+import ProjectUI from "./projectUI.js";
 
 export default class ProjectContUI {
     constructor() {
@@ -33,7 +34,6 @@ export default class ProjectContUI {
         this.bindEvents();
     }
     
-    //TODO: Update and delete functionality
     build() {
         this.renderProjectList();
         return this.root;
@@ -93,7 +93,6 @@ export default class ProjectContUI {
         projectList.forEach(project => {
             this.projectListElement.append(this.createProjectElement(project));
         })
-        
     }
 
     createProjectElement(project) {
@@ -119,7 +118,20 @@ export default class ProjectContUI {
 
         this.handleProjectUpdateBtn(projectElement, project);
         this.handleProjectDeleteBtn(projectElement, project);
+        this.handleProjectElement(projectElement, project);
         return projectElement;
+    }
+
+    handleProjectElement(projectElement, project) {
+        projectElement?.addEventListener('click', ()=> {
+            this.projectElementProcess(project);
+        })
+    }
+
+    projectElementProcess(project) {
+        this.root.removeChild(this.root.lastChild)
+        const projectUI = new ProjectUI(project);
+        this.root.append(projectUI.build());
     }
 
     handleProjectUpdateBtn(projectElement, project) {
