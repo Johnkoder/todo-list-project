@@ -5,7 +5,7 @@ export default class ProjectUI {
         this.projectLogic = project;
         this.root = document.createElement('div');
         this.root.className = 'project';
-        this.root.id = project.getId;
+        //this.root.id = project.getId;
 
         this.root.innerHTML = `
             <div class="todo-list"></div>
@@ -109,21 +109,54 @@ export default class ProjectUI {
             <button class="todo-delete-btn">Delete</button>
             <button class="todo-update-btn">Update</button>
 
- 
+            <dialog class="update-todo-dialog">
+                <h2>Todo</h2>
+                <div>Name:</div>
+                <input class="todo-name-update-input" required/>
+                <div>Description:</div>
+                <textarea class="todo-desc-update-input"></textarea>
+                <div>Due Date:</div>
+                <input type="date" class="todo-dueDate-update-input" />
+                <select class="todo-priority-update-input" name="priority" id="priority">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
+                <button class="update-todo-dialog-cancel-btn">Cancel</button>
+                <button class="update-todo-dialog-submit-btn">Submit</button>
+            </dialog>
         `;
             //TODO: make an update-todo-dialog here ^^^^^
         this.handleTodoDeleteBtn(todoElement, todo);
-        this.handleTodoUpdateBtn();
+        this.handleTodoUpdateBtn(todoElement, todo);
+        this.handleUpdateTodoDialogCancelBtn(todoElement);
 
         return todoElement;
     }
 
-    handleTodoUpdateBtn() {
+    handleTodoUpdateBtn(todoElement, todo) {
+        const todoUpdateBtn = todoElement.querySelector('.todo-update-btn');
+        const todoUpdateDialog = todoElement.querySelector('.update-todo-dialog')
+        todoUpdateBtn?.addEventListener('click', ()=> {
+            todoUpdateDialog.showModal();
 
+            this.handleAddTodoDialogCancelBtn(todoElement);
+        })
     }
 
     todoUpdateBtnProcess() {
+        //TODO: do this
+        return;
+    }
 
+    handleUpdateTodoDialogCancelBtn(todoElement) {
+        const updateTodoDialogCancelBtn = todoElement.querySelector('.update-todo-dialog-cancel-btn');
+        const updateTodoDialog = todoElement.querySelector('.update-todo-dialog')
+        updateTodoDialogCancelBtn.addEventListener('click',()=> {
+            this.clearAddTodoInputs();
+            updateTodoDialog.close();
+        })
     }
 
     handleTodoDeleteBtn(todoElement, todo) {
