@@ -127,7 +127,6 @@ export default class ProjectUI {
                 <button class="update-todo-dialog-submit-btn">Submit</button>
             </dialog>
         `;
-            //TODO: make an update-todo-dialog here ^^^^^
         this.handleTodoCheckBox(todoElement, todo);
         this.handleTodoDeleteBtn(todoElement, todo);
         this.handleTodoUpdateBtn(todoElement, todo);
