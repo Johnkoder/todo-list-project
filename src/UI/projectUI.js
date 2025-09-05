@@ -100,7 +100,7 @@ export default class ProjectUI {
         const todoElement = document.createElement('div');
         todoElement.id = todo.getId;
         todoElement.innerHTML = `
-            <input type="checkbox" ${todo.getIsChecked? 'checked':''} />
+            <input class="todo-checkbox" type="checkbox" ${todo.getIsChecked? 'checked':''} />
             <span>${todo.getTitle}</span>
             <span>${todo.getDesc}</span>
             <span>${todo.getDueDate}</span>
@@ -128,11 +128,20 @@ export default class ProjectUI {
             </dialog>
         `;
             //TODO: make an update-todo-dialog here ^^^^^
+        this.handleTodoCheckBox(todoElement, todo);
         this.handleTodoDeleteBtn(todoElement, todo);
         this.handleTodoUpdateBtn(todoElement, todo);
         this.handleUpdateTodoDialogCancelBtn(todoElement);
+        this.handleUpdateTodoDialogSubmitBtn(todoElement, todo);
 
         return todoElement;
+    }
+
+    handleTodoCheckBox(todoElement, todo) {
+        const todoCheckbox = todoElement.querySelector('.todo-checkbox')
+        todoCheckbox.addEventListener('change',()=> {
+            todo.setIsChecked = todoCheckbox.checked;
+        })
     }
 
     handleTodoUpdateBtn(todoElement, todo) {
@@ -145,9 +154,26 @@ export default class ProjectUI {
         })
     }
 
-    todoUpdateBtnProcess() {
-        //TODO: do this
-        return;
+    handleUpdateTodoDialogSubmitBtn(todoElement, todo) {
+        const updateTodoDialogSubmitBtn = todoElement.querySelector('.update-todo-dialog-submit-btn');
+        updateTodoDialogSubmitBtn.addEventListener('click',()=> {
+            this.updateTodoDialogSubmitBtnProcess(todoElement, todo);
+        })
+    }
+
+    updateTodoDialogSubmitBtnProcess(todoElement, todo) {
+        const updateTodoDialog = todoElement.querySelector('.update-todo-dialog')
+        const todoNameUpdateInput = updateTodoDialog.querySelector('.todo-name-update-input')
+        const todoDescUpdateInput = updateTodoDialog.querySelector('.todo-desc-update-input')
+        const todoDueDateUpdateInput = updateTodoDialog.querySelector('.todo-dueDate-update-input')
+        const todoPriorityUpdateInput = updateTodoDialog.querySelector('.todo-priority-update-input')
+
+        todo.setTitle = todoNameUpdateInput.value;
+        todo.setDesc = todoDescUpdateInput.value;
+        todo.setDueDate = todoDueDateUpdateInput.value;
+        todo.setPriority = todoPriorityUpdateInput.value;
+
+        this.renderTodoList();
     }
 
     handleUpdateTodoDialogCancelBtn(todoElement) {
