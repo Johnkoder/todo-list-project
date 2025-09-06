@@ -1,5 +1,8 @@
 import Project from "../modules/projectLogic.js";
-import '../styles/project.css'
+import '../styles/project.css';
+import addIconUrl from '../icons/add.svg';
+import updateIconUrl from '../icons/update.svg';
+import deleteIconUrl from '../icons/delete.svg';
 
 export default class ProjectUI {
     constructor(project) {
@@ -9,10 +12,12 @@ export default class ProjectUI {
         //this.root.id = project.getId;
 
         this.root.innerHTML = `
-            <h2>${project.getName} Todos</h2>
-            <div class="todo-list"></div>
-            <button class="add-todo-btn">Add Todo</button>
-
+            <div>
+                <h2>${project.getName} Todos</h2>
+                <div class="todo-list"></div>
+            </div>
+            <img class="big-icon add-todo-btn" src="${addIconUrl}">
+            
             <dialog class="add-todo-dialog">
                 <h2>Todo</h2>
                 <div>Name:</div>
@@ -48,7 +53,6 @@ export default class ProjectUI {
     }
 
     build() {
-        //this.projectLogic.createTodo('test1', '', '', ''); //testing
         this.renderTodoList();
         return this.root;
     }
@@ -100,16 +104,25 @@ export default class ProjectUI {
 
     createTodoElement(todo) {
         const todoElement = document.createElement('div');
+        todoElement.className = 'todo-element'
         todoElement.id = todo.getId;
         todoElement.innerHTML = `
-            <input class="todo-checkbox" type="checkbox" ${todo.getIsChecked? 'checked':''} />
-            <span>${todo.getTitle}</span>
-            <span>${todo.getDesc}</span>
-            <span>${todo.getDueDate}</span>
-            <span>${todo.getPriority}</span>
+            <div class="todo-infos">
+                <div>
+                    <input class="todo-checkbox" type="checkbox" ${todo.getIsChecked? 'checked':''} />
+                    <span>${todo.getTitle}</span>
+                    <span>${todo.getDesc}</span>
+                </div>
+                <div>
+                    <span>${todo.getDueDate}</span>
+                    <span>${todo.getPriority}</span>
+                </div>
+            </div>
 
-            <button class="todo-delete-btn">Delete</button>
-            <button class="todo-update-btn">Update</button>
+            <div>
+                <img class="small-icon todo-update-btn" src="${updateIconUrl}">
+                <img class="small-icon todo-delete-btn" src="${deleteIconUrl}">
+            </div>
 
             <dialog class="update-todo-dialog">
                 <h2>Todo</h2>

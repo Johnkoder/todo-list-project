@@ -46,7 +46,6 @@ export default class ProjectContUI {
     }
     
     build() {
-        this.logic.createProject("test")
         this.renderProjectList();
         return this.root;
     }
