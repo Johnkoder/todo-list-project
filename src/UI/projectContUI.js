@@ -1,5 +1,7 @@
 import ProjectCont from "../modules/projectContLogic";
 import ProjectUI from "./projectUI.js";
+import '../styles/projectCont.css';
+
 
 export default class ProjectContUI {
     constructor() {
@@ -8,6 +10,7 @@ export default class ProjectContUI {
         this.root.className = 'project-cont';
 
         this.root.innerHTML = `
+            <h2>Projects</h2>
             <div class="project-list"></div>
             <button class="add-project-btn">Add Project</button>
             <dialog class="add-project-dialog">

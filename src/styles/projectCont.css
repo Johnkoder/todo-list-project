@@ -1,0 +1,16 @@
+.project-cont {
+    overflow: hidden;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    color: var(--celadon)
+}
+
+.project-list {
+    display: flex;
+}
+
+.todos-cont {
+    flex: 1;
+}

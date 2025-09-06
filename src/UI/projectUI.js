@@ -8,6 +8,7 @@ export default class ProjectUI {
         //this.root.id = project.getId;
 
         this.root.innerHTML = `
+            <h2>${project.getName} Todos</h2>
             <div class="todo-list"></div>
             <button class="add-todo-btn">Add Todo</button>
 
