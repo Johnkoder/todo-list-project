@@ -30,5 +30,13 @@ h1 {
     width: 70%;
     min-height: 600px;
     border-radius: 20px;
-    
+}
+
+
+.big-icon {
+    height: 40px;
+}
+
+.small-icon {
+    height: 25px;
 }

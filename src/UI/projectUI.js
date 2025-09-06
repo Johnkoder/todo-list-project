@@ -1,4 +1,5 @@
 import Project from "../modules/projectLogic.js";
+import '../styles/project.css'
 
 export default class ProjectUI {
     constructor(project) {

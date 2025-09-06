@@ -1,6 +1,9 @@
 import ProjectCont from "../modules/projectContLogic";
 import ProjectUI from "./projectUI.js";
 import '../styles/projectCont.css';
+import addIconUrl from '../icons/add.svg';
+import updateIconUrl from '../icons/update.svg';
+import deleteIconUrl from '../icons/delete.svg';
 
 
 export default class ProjectContUI {
@@ -12,7 +15,8 @@ export default class ProjectContUI {
         this.root.innerHTML = `
             <h2>Projects</h2>
             <div class="project-list"></div>
-            <button class="add-project-btn">Add Project</button>
+            <img class="big-icon add-project-btn" src="${addIconUrl}">
+            
             <dialog class="add-project-dialog">
                 
                 
@@ -42,6 +46,7 @@ export default class ProjectContUI {
     }
     
     build() {
+        this.logic.createProject("test")
         this.renderProjectList();
         return this.root;
     }
@@ -104,11 +109,13 @@ export default class ProjectContUI {
 
     createProjectElement(project) {
         const projectElement = document.createElement('div');
+        projectElement.className = "project-item";
         projectElement.id = project.getId;
         projectElement.innerHTML = `
             <span class="project-name">${project.getName}</span>
-            <button class="project-update-btn">Update</button>
-            <button class="project-delete-btn">Delete</button>
+
+            <img class="small-icon project-update-btn" src="${updateIconUrl}">
+            <img class="small-icon project-delete-btn" src="${deleteIconUrl}">
 
             <dialog class="update-project-dialog">
                 
