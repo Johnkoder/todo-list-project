@@ -38,6 +38,13 @@ h2 {
     align-self: center;
 }
 
+.add-todo-dialog, 
+.update-todo-dialog {
+    margin: auto;
+}
+
+
+
 
 
 

@@ -35,8 +35,15 @@ h1 {
 
 .big-icon {
     height: 40px;
+    cursor: pointer;
 }
 
 .small-icon {
     height: 25px;
+    cursor: pointer;
+}
+
+.big-icon:hover,
+.small-icon:hover {
+    opacity: 0.7;
 }

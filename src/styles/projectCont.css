@@ -4,7 +4,12 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
-    color: var(--celadon)
+    color: var(--celadon);
+    align-items: center;
+}
+
+h2{
+    align-self: flex-start;
 }
 
 .project-list {
@@ -12,6 +17,7 @@
     gap: 5px;
     flex-wrap: wrap;
     margin: 10px 0 10px 0;
+    align-self: flex-start;
 }
 
 .project-item {
@@ -28,5 +34,58 @@
 }
 
 .todos-cont {
+    align-self: stretch;
     flex: 1;
+}
+
+
+.add-project-dialog,
+.update-project-dialog {
+    margin: auto; 
+
+    padding: 30px 40px;;
+    background-color: var(--tyrian-purple);
+    border: none;
+    border-radius: 10px;
+}
+
+.add-project-dialog > :first-child,
+.update-project-dialog > :first-child {
+    font-size: 1.5rem;
+    color: var(--celadon);
+    margin-bottom: 15px;
+}
+
+.add-project-dialog > input,
+.update-project-dialog > input {
+    background-color: var(--violet);
+    color: var(--celadon);
+    padding: 5px 15px;
+    border: 2px solid var(--celadon);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.add-project-dialog > input:focus,
+.update-project-dialog > input:focus {
+    outline: 2px dotted var(--celadon);
+}
+
+.add-project-dialog > button,
+.update-project-dialog > button {
+    color: var(--celadon);
+    background-color: transparent;
+    border: 3px solid var(--celadon);
+    padding: 7px 14px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.add-project-dialog > button:hover,
+.update-project-dialog > button:hover {
+    border: 3px solid transparent;
+    background-color: var(--celadon);
+    color: var(--tyrian-purple);
 }
