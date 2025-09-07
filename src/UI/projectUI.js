@@ -166,9 +166,19 @@ export default class ProjectUI {
 
     handleTodoUpdateBtn(todoElement, todo) {
         const todoUpdateBtn = todoElement.querySelector('.todo-update-btn');
-        const todoUpdateDialog = todoElement.querySelector('.update-todo-dialog')
+        const todoUpdateDialog = todoElement.querySelector('.update-todo-dialog');
+        
+        const todoNameUpdateInput = todoUpdateDialog.querySelector('.todo-name-update-input')
+        const todoDescUpdateInput = todoUpdateDialog.querySelector('.todo-desc-update-input')
+        const todoDueDateUpdateInput = todoUpdateDialog.querySelector('.todo-dueDate-update-input')
+        const todoPriorityUpdateInput = todoUpdateDialog.querySelector('.todo-priority-update-input')
+
         todoUpdateBtn?.addEventListener('click', ()=> {
             todoUpdateDialog.showModal();
+            todoNameUpdateInput.value = todo.getTitle;
+            todoDescUpdateInput.value = todo.getDesc;
+            todoDueDateUpdateInput.value = todo.getDueDate;
+            todoPriorityUpdateInput.value = todo.getPriority;
 
             this.handleAddTodoDialogCancelBtn(todoElement);
         })
