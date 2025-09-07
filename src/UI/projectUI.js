@@ -19,18 +19,21 @@ export default class ProjectUI {
             <img class="big-icon add-todo-btn" src="${addIconUrl}">
             
             <dialog class="add-todo-dialog">
-                <h2>Todo</h2>
-                <div>Name:</div>
-                <input class="todo-name-input" required/>
-                <div>Description:</div>
-                <textarea class="todo-desc-input"></textarea>
-                <div>Due Date:</div>
-                <input type="date" class="todo-dueDate-input" />
-                <select class="todo-priority-input" name="priority" id="priority">
-                    <option value="1" selected>1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <div class="inputs-cont">
+                    <h2>Todo</h2>
+                    <h3>Name:</h3>
+                    <input class="todo-name-input" required/>
+                    <h3>Description:</h3>
+                    <textarea class="todo-desc-input"></textarea>
+                    <h3>Due Date:</h3>
+                    <input type="date" class="todo-dueDate-input" />
+                    <h3>Priority:</h3>
+                    <select class="todo-priority-input" name="priority" id="priority">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
 
                 <button class="add-todo-dialog-cancel-btn">Cancel</button>
                 <button class="add-todo-dialog-submit-btn">Submit</button>
@@ -125,18 +128,21 @@ export default class ProjectUI {
             </div>
 
             <dialog class="update-todo-dialog">
-                <h2>Todo</h2>
-                <div>Name:</div>
-                <input class="todo-name-update-input" required/>
-                <div>Description:</div>
-                <textarea class="todo-desc-update-input"></textarea>
-                <div>Due Date:</div>
-                <input type="date" class="todo-dueDate-update-input" />
-                <select class="todo-priority-update-input" name="priority" id="priority">
-                    <option value="1" selected>1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <div class="inputs-cont"> 
+                    <h2>Todo</h2>
+                    <h3>Name:</h3>
+                    <input class="todo-name-update-input" required/>
+                    <h3>Description:</h3>
+                    <textarea class="todo-desc-update-input"></textarea>
+                    <h3>Due Date:</h3>
+                    <input type="date" class="todo-dueDate-update-input" />
+                    <h3>Priority:</h3>
+                    <select class="todo-priority-update-input" name="priority" id="priority">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
 
                 <button class="update-todo-dialog-cancel-btn">Cancel</button>
                 <button class="update-todo-dialog-submit-btn">Submit</button>
