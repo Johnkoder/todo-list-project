@@ -5,6 +5,10 @@ export default class ProjectCont {
 
     get getProjectList() { return this.#projectList }
 
+    toJSON () {
+        return { projectList: this.#projectList }
+    }
+
     createProject(name) {
         const newProject = new Project(name);
         this.#projectList.push(newProject);

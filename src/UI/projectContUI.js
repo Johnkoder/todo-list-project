@@ -93,6 +93,7 @@ export default class ProjectContUI {
         this.logic.createProject(projectName);
 
         //TODO: save projectCont to localStorage
+        localStorage.setItem('projectList', JSON.stringify(this.logic.toJSON()))
 
         this.dialogElement.close();
         this.renderProjectList();
