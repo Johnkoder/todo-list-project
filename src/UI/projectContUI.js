@@ -47,7 +47,8 @@ export default class ProjectContUI {
     
     build() {
         //TODO: load projectList from localStorage
-        // Replace this.logic with the projectCont loaded from storage
+        this.logic = this.logic.loadProjectCont() || this.logic;
+        console.log(this.logic);
         this.renderProjectList();
         return this.root;
     }
@@ -93,8 +94,8 @@ export default class ProjectContUI {
         this.logic.createProject(projectName);
 
         //TODO: save projectCont to localStorage
-        localStorage.setItem('projectList', JSON.stringify(this.logic.toJSON()))
-
+        localStorage.setItem('projectCont', JSON.stringify(this.logic.toJSON()))
+   
         this.dialogElement.close();
         this.renderProjectList();
     }

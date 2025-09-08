@@ -4,9 +4,22 @@ export default class ProjectCont {
     #projectList = [];
 
     get getProjectList() { return this.#projectList }
+    set setProjectList(projectList) { this.#projectList = projectList  }
 
     toJSON () {
         return { projectList: this.#projectList }
+    }
+
+    static fromJSON(projectCont) {
+        const newProjectCont = new ProjectCont();
+        newProjectCont.setProjectList = JSON.parse(projectCont).projectList;
+        return newProjectCont;
+    }
+
+    loadProjectCont() {
+        const projectCont = localStorage.getItem('projectCont');
+        if (!projectCont) return null;  
+        return ProjectCont.fromJSON(projectCont);
     }
 
     createProject(name) {
