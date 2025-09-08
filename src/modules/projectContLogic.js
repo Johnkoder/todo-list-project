@@ -8,6 +8,9 @@ export default class ProjectCont {
     createProject(name) {
         const newProject = new Project(name);
         this.#projectList.push(newProject);
+        this.saveToStorage();
+        const storageItem = localStorage.getItem('projectList');
+        console.log(storageItem);
     }
 
     deleteProject(id) {

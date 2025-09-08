@@ -46,6 +46,8 @@ export default class ProjectContUI {
     }
     
     build() {
+        //TODO: load projectList from localStorage
+        // Replace this.logic with the projectCont loaded from storage
         this.renderProjectList();
         return this.root;
     }
@@ -89,6 +91,10 @@ export default class ProjectContUI {
         const projectName = this.getProjectName();
         this.dialogInput.value = '';
         this.logic.createProject(projectName);
+
+        //TODO: save projectCont to localStorage
+        
+
         this.dialogElement.close();
         this.renderProjectList();
     }
