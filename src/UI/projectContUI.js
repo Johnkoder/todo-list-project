@@ -93,7 +93,6 @@ export default class ProjectContUI {
         this.logic.createProject(projectName);
 
         //TODO: save projectCont to localStorage
-        
 
         this.dialogElement.close();
         this.renderProjectList();
