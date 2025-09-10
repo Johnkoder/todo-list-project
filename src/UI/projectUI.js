@@ -166,6 +166,7 @@ export default class ProjectUI {
         const todoCheckbox = todoElement.querySelector('.todo-checkbox')
         todoCheckbox.addEventListener('change',()=> {
             todo.setIsChecked = todoCheckbox.checked;
+            this.projectContLogic.saveProjectCont();
         })
     }
 
@@ -207,7 +208,7 @@ export default class ProjectUI {
         todo.setDesc = todoDescUpdateInput.value;
         todo.setDueDate = todoDueDateUpdateInput.value;
         todo.setPriority = todoPriorityUpdateInput.value;
-
+        this.projectContLogic.saveProjectCont();
         this.renderTodoList();
     }
 
@@ -230,6 +231,7 @@ export default class ProjectUI {
 
     todoDeleteBtnProcess(todo) {
         this.projectLogic.deleteTodo(todo.getId);
+        this.projectContLogic.saveProjectCont();
     }
 
     renderTodoList() {

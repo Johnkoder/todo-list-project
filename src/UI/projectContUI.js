@@ -95,7 +95,6 @@ export default class ProjectContUI {
         this.dialogInput.value = '';
         this.logic.createProject(projectName);
 
-        //TODO: pass the projectCont
         this.logic.saveProjectCont();
 
         this.dialogElement.close();
@@ -181,6 +180,8 @@ export default class ProjectContUI {
         const chosenProject = this.logic.getProjectList[projectIndex];
         chosenProject.setName = updateDialogInput.value;
         updateProjectModal.close();
+        this.logic.saveProjectCont();
+
         this.renderProjectList();
     }
 
@@ -214,6 +215,8 @@ export default class ProjectContUI {
 
     deleteProjectBtnProcess(project) {
         this.logic.deleteProject(project.getId)
+        this.logic.saveProjectCont();
+
     }
 
     removeChildren() {
