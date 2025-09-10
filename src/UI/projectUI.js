@@ -5,7 +5,8 @@ import updateIconUrl from '../icons/update.svg';
 import deleteIconUrl from '../icons/delete.svg';
 
 export default class ProjectUI {
-    constructor(project) {
+    constructor(project, projectCont) {
+        this.projectContLogic = projectCont;
         this.projectLogic = project;
         this.root = document.createElement('div');
         this.root.className = 'project';
@@ -85,6 +86,10 @@ export default class ProjectUI {
         const priority = this.todoPriorityInput.value;
 
         this.projectLogic.createTodo(title, desc, dueDate, priority);
+        
+        // TODO: save to localStorage
+        this.projectContLogic.saveProjectCont();
+
         this.closeAddTodoModal();
         this.renderTodoList();
     }

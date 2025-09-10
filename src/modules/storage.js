@@ -1,13 +1,15 @@
-const KEY = 'projectList:v1';
+import ProjectCont from './projectContLogic.js';
+import Project from './projectLogic.js';
+import Todo from './todoLogic.js';
 
-export function loadProjectList() {
-  try {
-    return JSON.parse(localStorage.getItem(KEY) || '[]');
-  } catch {
-    return [];
-  }
+const KEY = 'projectCont';
+
+export function loadProjectCont() {
+    const jsonProjectCont = localStorage.getItem(KEY);
+    if (!jsonProjectCont) return null;  
+    return ProjectCont.fromJSON(jsonProjectCont);
 }
 
-export function saveProjectList(list) {
-  localStorage.setItem(KEY, JSON.stringify(list));
+export function saveProjectCont(projectCont) {
+    localStorage.setItem(KEY, JSON.stringify(projectCont.toJSON()));
 }

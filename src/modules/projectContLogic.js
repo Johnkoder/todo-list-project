@@ -1,4 +1,5 @@
 import Project from "./projectLogic";
+import Todo from "./todoLogic";
 
 export default class ProjectCont {
     #projectList = [];
@@ -7,12 +8,36 @@ export default class ProjectCont {
     set setProjectList(projectList) { this.#projectList = projectList  }
 
     toJSON () {
-        return { projectList: this.#projectList }
+        return { 
+            projectList: this.#projectList.map(project => ({
+                id: project.getId,
+                name: project.getName,
+                todoList: project.getTodoList.map(todo => ({
+                    id: todo.getId,
+                    title: todo.getTitle,
+                    desc: todo.getDesc,
+                    dueDate: todo.getDueDate,
+                    priority: todo.getPriority,
+                    isChecked: todo.getIsChecked
+                }))
+            }))
+        }
     }
 
-    static fromJSON(projectCont) {
+    static fromJSON(jsonProjectCont) {
         const newProjectCont = new ProjectCont();
-        newProjectCont.setProjectList = JSON.parse(projectCont).projectList;
+        newProjectCont.setProjectList = JSON.parse(jsonProjectCont).projectList.map(project => {
+            const newProject = new Project(project.name);
+            newProject.setId = project.id;
+            newProject.setTodoList = project.todoList.map(todo => {
+                const newTodo = new Todo(todo.title, todo.desc, todo.dueDate, todo.priority);
+                newTodo.setId = todo.id;
+                newTodo.setIsChecked = todo.isChecked;
+                return newTodo;
+            })
+            return newProject;
+        });
+
         return newProjectCont;
     }
 
@@ -20,6 +45,10 @@ export default class ProjectCont {
         const projectCont = localStorage.getItem('projectCont');
         if (!projectCont) return null;  
         return ProjectCont.fromJSON(projectCont);
+    }
+
+    saveProjectCont() {
+        localStorage.setItem('projectCont', JSON.stringify(this.toJSON()));
     }
 
     createProject(name) {

@@ -5,6 +5,8 @@ import addIconUrl from '../icons/add.svg';
 import updateIconUrl from '../icons/update.svg';
 import deleteIconUrl from '../icons/delete.svg';
 
+//import { saveProjectCont, loadProjectCont } from "../modules/storage.js";
+
 
 export default class ProjectContUI {
     constructor() {
@@ -93,9 +95,9 @@ export default class ProjectContUI {
         this.dialogInput.value = '';
         this.logic.createProject(projectName);
 
-        //TODO: save projectCont to localStorage
-        localStorage.setItem('projectCont', JSON.stringify(this.logic.toJSON()))
-   
+        //TODO: pass the projectCont
+        this.logic.saveProjectCont();
+
         this.dialogElement.close();
         this.renderProjectList();
     }
@@ -107,6 +109,7 @@ export default class ProjectContUI {
     
     renderProjectList() {
         this.removeChildren();
+        
         const projectList = this.logic.getProjectList;
         projectList.forEach(project => {
             this.projectListElement.append(this.createProjectElement(project));
@@ -150,7 +153,7 @@ export default class ProjectContUI {
 
     projectElementProcess(project) {
         this.todosCont.replaceChildren();
-        const projectUI = new ProjectUI(project);
+        const projectUI = new ProjectUI(project, this.logic);
         this.todosCont.append(projectUI.build());
     }
 

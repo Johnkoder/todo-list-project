@@ -14,6 +14,8 @@ export default class Project {
     get getName() { return this.#name };
 
     set setName(name) { this.#name = name };
+    set setTodoList(todoList) { this.#todoList = todoList }
+    set setId(id) { this.#id = id };
 
     createTodo(title, desc, dueDate, priority) {
         const newTodo = new Todo(title, desc, dueDate, priority);
